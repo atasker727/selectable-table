@@ -1,0 +1,24 @@
+.table-row {
+
+  border: 1px solid lightgray;
+  padding: 6px;
+
+  &--selected {
+    background: lightblue
+  }
+
+  &--selectable {
+    &, & input[type=checkbox] {
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    background: lightgray;
+  }
+
+  .cell {
+    padding: 12px 6px
+  }
+
+}

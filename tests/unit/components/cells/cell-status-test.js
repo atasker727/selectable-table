@@ -8,7 +8,6 @@ module('Unit | Component | CellStatus', hooks => {
   setupRenderingTest(hooks);
   
   let template = hbs`<Cells::CellStatus
-    @status={{this.status}}
     @content={{this.content}}
   />`
 
@@ -44,7 +43,7 @@ module('Unit | Component | CellStatus', hooks => {
 
 
   test('the icon is visible when status is available', async function(assert) {
-    let args = {status: 'available'}
+    let args = {content: 'available'}
     await renderComponent(args)
     
     assert.dom(selectors.statusIcon).exists({count: 1})
@@ -53,7 +52,7 @@ module('Unit | Component | CellStatus', hooks => {
 
 
   test('the icon is not visible when status is not available', async function(assert) {
-    let args = {status: 'scheduled'}
+    let args = {content: 'scheduled'}
     await renderComponent(args)
     
     assert.dom(selectors.statusIcon).exists({count: 1})

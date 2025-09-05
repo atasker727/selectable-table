@@ -1,0 +1,29 @@
+.table {
+  border: 1px solid lightgray;
+
+  &, &-container {
+    border-collapse: collapse;
+  }
+  &-header {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+
+  &-actions-bar, &-header {
+    padding: 12px 6px;
+  }
+
+  .text-header {
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+
+  &-actions-bar {
+    display: flex;
+    align-items: center;
+
+    &-selected-count {
+      width: 150px;
+    }
+  }
+}

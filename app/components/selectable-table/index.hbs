@@ -1,6 +1,46 @@
 <div 
-  ...attributes
   class='table-container'
+  ...attributes
 >
-  im a table
+  {{#if @hasSelectableRows}}
+    <div class="table-actions-bar">
+      <input 
+        type="checkbox"
+        onclick={{this.toggleSelectAllRows}}
+        checked={{this.isAllRowsSelected}}
+      />
+      <div class="table-actions-bar-selected-count ">
+        {{or this.selectedRows.length 'None'}} Selected
+      </div>
+      {{#if (gt this.selectedRowsCount 0)}}
+        <button type="button" onclick={{this.onDownloadButtonClick}}>Download Selected</button>
+      {{/if}}
+    </div>
+  {{/if}}
+  <table class='table'>
+    <thead class='table-header'>
+      {{#if @hasSelectableRows}}
+        <SelectableTable::Header::SpacerHeader/>
+      {{/if}}
+      {{#each this.columns as |column|}}
+        <SelectableTable::Header::TextHeader @content={{column}}/>
+      {{/each}}
+
+      
+    </thead>
+    <tbody>
+      {{#each this.rowsWithIDs as |row|}}
+        <SelectableTable::TableRow 
+          @isRowSelected={{includes row._id (map-by "_id" this.selectedRows)}}
+          @isSelectableRow={{@hasSelectableRows}} 
+          @isSelectableEnabled={{call (fn @getRowSelectability row)}}
+          @onRowClick={{fn this.toggleRowSelection row}}
+          @columnOverrides={{@columnOverrides}}
+          @row={{row}} 
+        />
+      {{else}}
+        No data
+      {{/each}}
+    </tbody>
+  </table>
 </div>

@@ -1,3 +1,19 @@
-<tr>
-  
+<tr 
+  class="table-row {{if @isRowSelected 'table-row--selected'}} {{if @isSelectableEnabled 'table-row--selectable'}}"
+  onClick={{@onRowClick}}
+>
+  {{#if @isSelectableRow}}
+    <Cells::CellSelectRow 
+      @isChecked={{@isRowSelected}}
+      @onClick={{@onRowClick}}
+      @isDisabled={{not @isSelectableEnabled}}
+    />
+  {{/if}}
+  {{#each this.cellContents as |cell|}}
+    {{#if (get cell 'cellComponent')}}
+      {{component (get cell 'cellComponent') content=(get cell 'value')}}
+    {{else}}
+      <Cells::CellText @content={{get cell 'value'}}/>
+    {{/if}}
+  {{/each}}
 </tr>
