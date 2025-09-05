@@ -10,10 +10,19 @@
 
 ## Installation
 
+install the add-on:
 ```
 ember install selectable-table
 ```
 
+see the component running locally:
+```
+pnpm start
+```
+run the tests (such as they are):
+```
+pnpm test:ember-server
+```
 ## Usage
 
 [Longer description of how to use the addon in apps.]
